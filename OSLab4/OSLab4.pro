@@ -33,6 +33,7 @@ SOURCES += \
         threadmanager.cpp
 
 HEADERS += \
+        accumulatorpi.h \
         defines.h \
         mainwindow.h \
         mathmethod.h \

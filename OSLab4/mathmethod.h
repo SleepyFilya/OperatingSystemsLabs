@@ -15,9 +15,7 @@ public:
     explicit MathMethod(QObject *parent = nullptr);
     ~MathMethod();
 
-    double circle(double, double);
-    bool isCircle(float, float);
-    void monteCarloMethod();
+    double monteCarloMethod();
 
 signals:
     void sendResult(double pi);

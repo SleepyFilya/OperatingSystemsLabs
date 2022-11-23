@@ -11,46 +11,27 @@ MathMethod::~MathMethod()
 
 }
 
-void MathMethod::monteCarloMethod()
+static int rrand(int range_min, int range_max)
 {
-    const int pointsNumb = 1000;
+    return rand() % (range_max - range_min + 1) + range_min;
+}
 
-    float x = 0;
-    float y = 0;
+double MathMethod::monteCarloMethod()
+{
+    const unsigned pointsNumb = 100000;
+    unsigned count = 0;
+    unsigned side = 1000;
+    unsigned qSide = side * side;
 
-    int totalPoints = 0;
-    int circlePoints = 0;
-
-    const float step = 1 / (float)pointsNumb;
-
-    while(y < 1)
+    for(int i = 0; i < pointsNumb; i++)
     {
-        while(x < 1)
-        {
-            totalPoints++;
+        unsigned x = rrand(0, side);
+        unsigned y = rrand(0, side);
 
-            if(isCircle(x, y))
-                circlePoints++;
-
-            x += step;
-        }
-
-        x = 0;
-        y += step;
+        if((x*x + y*y) < qSide) ++count;
     }
 
-    pi = 4 * circlePoints / (float)totalPoints;
+    pi = double(count * 4) / pointsNumb;
 
-    emit sendResult(pi);
-}
-
-double MathMethod::circle(double x, double radius)
-{
-    double y = radius * radius - x * x;
-    return y;
-}
-
-bool MathMethod::isCircle(float x, float y)
-{
-    return x*x + y*y < 1;
+    return pi;
 }

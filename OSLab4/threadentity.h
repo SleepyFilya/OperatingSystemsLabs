@@ -1,20 +1,48 @@
-#ifndef THREADENTITY_H
-#define THREADENTITY_H
+#pragma once
+//#ifndef THREADENTITY_H
+//#define THREADENTITY_H
 
-#include <QThread>
+//#include <QThread>
+#include <thread>
 
-class ThreadEntity : public QThread
+#include "threadmanager.h"
+#include "mathmethod.h"
+
+class ThreadEntity/* : public QThread*/
 {
-    Q_OBJECT
+//    Q_OBJECT
 public:
-    ThreadEntity();
+    ThreadEntity(/*ThreadId*/ int id, AccumulatorPi* pAccumulator);
     ~ThreadEntity();
 
-    bool isRunning;
+//    bool isRunning;
+
+    void pause();
+    void resume();
+
+    void increasePriority();
+    void decreasePriority();
+
+    QString getStatus();
+
+    /*ThreadId*/ int getId() const { return _pId; }
 
 signals:
 
 public slots:
+
+private:
+    /*ThreadId*/ int _pId;
+    MathMethod _pMathMetod;
+    AccumulatorPi* _pAccumulator;
+    std::thread* _pThread;
+    int _pPriority;
+    std::atomic_bool _pNeedTerminate;
+    std::atomic_int _pCalcsCount;
+    int _pLastCalcs;
+    bool _pPaused;
+
+    void threadProc();
 };
 
-#endif // THREADENTITY_H
+//#endif // THREADENTITY_H

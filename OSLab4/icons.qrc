@@ -4,5 +4,9 @@
         <file>icons/deleteIcon.png</file>
         <file>icons/pauseIcon.png</file>
         <file>icons/startIcon.png</file>
+        <file>icons/addIcon.png</file>
+        <file>icons/minusIcon.png</file>
+        <file>icons/levelDownIcon.png</file>
+        <file>icons/levelUpIcon.png</file>
     </qresource>
 </RCC>

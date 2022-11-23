@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>422</width>
-    <height>661</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,65 +22,46 @@
   <property name="minimumSize">
    <size>
     <width>422</width>
-    <height>661</height>
+    <height>500</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>422</width>
-    <height>661</height>
+    <height>500</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>OS Lab 4</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QCustomPlot" name="controlHist" native="true">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>100</y>
-      <width>401</width>
-      <height>261</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="controlValue">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
-      <width>171</width>
-      <height>41</height>
+      <y>10</y>
+      <width>401</width>
+      <height>181</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Consolas</family>
-      <pointsize>22</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="text">
-     <string>π = 3.14</string>
-    </property>
-   </widget>
-   <widget class="QListView" name="threadList">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>410</y>
-      <width>401</width>
-      <height>241</height>
-     </rect>
+     <string>π не вычисленоr
+Запущенных потоков нет</string>
     </property>
    </widget>
    <widget class="QPushButton" name="createThreadBtn">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>370</y>
+      <y>200</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -102,7 +83,7 @@
     </property>
     <property name="icon">
      <iconset resource="icons.qrc">
-      <normaloff>:/png/icons/createIcon.png</normaloff>:/png/icons/createIcon.png</iconset>
+      <normaloff>:/png/icons/addIcon.png</normaloff>:/png/icons/addIcon.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -115,7 +96,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>370</y>
+      <y>200</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -137,7 +118,7 @@
     </property>
     <property name="icon">
      <iconset resource="icons.qrc">
-      <normaloff>:/png/icons/deleteIcon.png</normaloff>:/png/icons/deleteIcon.png</iconset>
+      <normaloff>:/png/icons/minusIcon.png</normaloff>:/png/icons/minusIcon.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -149,8 +130,8 @@
    <widget class="QPushButton" name="pauseProcessBtn">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>10</y>
+      <x>160</x>
+      <y>200</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -184,8 +165,8 @@
    <widget class="QPushButton" name="startProcessBtn">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
+      <x>120</x>
+      <y>200</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -216,17 +197,89 @@
      </size>
     </property>
    </widget>
+   <widget class="QListWidget" name="threadList">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>401</width>
+      <height>241</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="priorityUpBtn">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>200</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="icons.qrc">
+      <normaloff>:/png/icons/levelUpIcon.png</normaloff>:/png/icons/levelUpIcon.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="priorityDownBtn">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>200</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="icons.qrc">
+      <normaloff>:/png/icons/levelDownIcon.png</normaloff>:/png/icons/levelDownIcon.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>QCustomPlot</class>
-   <extends>QWidget</extends>
-   <header>qcustomplot.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="icons.qrc"/>
  </resources>
