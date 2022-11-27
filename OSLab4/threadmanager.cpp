@@ -15,7 +15,7 @@ ThreadManager::~ThreadManager()
     _pNoInfo = true;
 }
 
-/*ThreadId*/ int ThreadManager::createThread()
+int ThreadManager::createThread()
 {
     qDebug() << "createThread: ";
     _pIdCount++;
@@ -28,7 +28,7 @@ ThreadManager::~ThreadManager()
     return _pIdCount;
 }
 
-void ThreadManager::increaseThreadPriority(/*ThreadId*/ int threadId)
+void ThreadManager::increaseThreadPriority(int threadId)
 {
     auto it = findThread(threadId);
 
@@ -36,7 +36,7 @@ void ThreadManager::increaseThreadPriority(/*ThreadId*/ int threadId)
         (*it)->increasePriority();
 }
 
-void ThreadManager::decreaseThreadPriority(/*ThreadId*/ int threadId)
+void ThreadManager::decreaseThreadPriority(int threadId)
 {
     auto it = findThread(threadId);
 
@@ -44,7 +44,7 @@ void ThreadManager::decreaseThreadPriority(/*ThreadId*/ int threadId)
         (*it)->decreasePriority();
 }
 
-void ThreadManager::pauseThread(/*ThreadId*/ int threadId)
+void ThreadManager::pauseThread(int threadId)
 {
     auto it = findThread(threadId);
 
@@ -52,7 +52,7 @@ void ThreadManager::pauseThread(/*ThreadId*/ int threadId)
         (*it)->pause();
 }
 
-void ThreadManager::resumeThread(/*ThreadId*/ int threadId)
+void ThreadManager::resumeThread(int threadId)
 {
     auto it = findThread(threadId);
 
@@ -60,10 +60,10 @@ void ThreadManager::resumeThread(/*ThreadId*/ int threadId)
         (*it)->resume();
 }
 
-void ThreadManager::deleteThread(/*ThreadId*/ int threadId)
+void ThreadManager::deleteThread(int threadId)
 {
     qDebug() << "ThreadManager::deleteThread";
-    auto it = findThread(threadId+1);
+    auto it = findThread(threadId);
 
     qDebug() << "it = " << it;
 
@@ -95,10 +95,10 @@ QString ThreadManager::updateStatus()
 //    qDebug() << "result: " << result;
 
     for(ThreadEntity* thread : _pThreadEntities)
-    {/*
-        qDebug() << "_pThreadEntities:";
-        qDebug() << thread->getId();
-        qDebug() << thread->getStatus();*/
+    {
+//        qDebug() << "_pThreadEntities:";
+//        qDebug() << thread->getId();
+//        qDebug() << thread->getStatus();
         result += "Поток " + QString::number(thread->getId()) + " " + thread->getStatus() + line;
     }
 //    qDebug() << "result: " << result;
@@ -106,7 +106,7 @@ QString ThreadManager::updateStatus()
     return result;
 }
 
-QVector<ThreadEntity*>::iterator ThreadManager::findThread(/*ThreadId*/ int threadId)
+QVector<ThreadEntity*>::iterator ThreadManager::findThread(int threadId)
 {
     return std::find_if(_pThreadEntities.begin(), _pThreadEntities.end(), [threadId](const ThreadEntity* thread)
     {

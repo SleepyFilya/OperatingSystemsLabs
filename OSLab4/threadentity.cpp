@@ -1,14 +1,22 @@
 #include "threadentity.h"
 
-ThreadEntity::ThreadEntity(/*ThreadId*/ int id, AccumulatorPi *pAccumulator) : _pId(id), _pAccumulator(pAccumulator)/* : QThread()*/
+DWORD WINAPI threadProccc(void *some)
+{
+    ThreadEntity* entity = (ThreadEntity*) some;
+    entity->threadProc();
+
+    return 0;
+}
+
+ThreadEntity::ThreadEntity(int id, AccumulatorPi *pAccumulator) : _pId(id), _pAccumulator(pAccumulator)/* : QThread()*/
 {
     _pNeedTerminate = false;
-    _pThread = new std::thread(&ThreadEntity::threadProc, this);
+    _pThread =  CreateThread(NULL, 0, threadProccc, this, 0, NULL);
     _pPaused = false;
 
     _pPriority = THREAD_PRIORITY_NORMAL;
-    SetThreadPriority(HANDLE(_pThread->native_handle()), _pPriority);
-    SetThreadPriorityBoost(HANDLE(_pThread->native_handle()), FALSE);
+    SetThreadPriority(_pThread, _pPriority);
+    SetThreadPriorityBoost(_pThread, FALSE);
 
     _pLastCalcs = 0;
     _pCalcsCount = 0;
@@ -20,15 +28,13 @@ ThreadEntity::~ThreadEntity()
         resume();
 
     _pNeedTerminate = true;
-    _pThread->join();
-    delete _pThread;
 }
 
 void ThreadEntity::pause()
 {
     if(!_pPaused)
     {
-        SuspendThread(HANDLE(_pThread->native_handle()));
+        SuspendThread(_pThread);
         _pPaused = true;
     }
 }
@@ -37,7 +43,7 @@ void ThreadEntity::resume()
 {
     if(_pPaused)
     {
-        ResumeThread(HANDLE(_pThread->native_handle()));
+        ResumeThread(_pThread);
         _pPaused = false;
     }
 }
@@ -47,7 +53,7 @@ void ThreadEntity::increasePriority()
     if(_pPriority < THREAD_PRIORITY_TIME_CRITICAL)
         _pPriority++;
 
-    SetThreadPriority(HANDLE(_pThread->native_handle()), _pPriority);
+    SetThreadPriority(_pThread, _pPriority);
 }
 
 void ThreadEntity::decreasePriority()
@@ -55,7 +61,9 @@ void ThreadEntity::decreasePriority()
     if(_pPriority > THREAD_PRIORITY_IDLE)
         _pPriority--;
 
-    SetThreadPriority(HANDLE(_pThread->native_handle()), _pPriority);
+    SetThreadPriority(_pThread, _pPriority);
+
+    qDebug() << GetThreadPriority(_pThread);
 }
 
 QString ThreadEntity::getStatus()
@@ -64,9 +72,13 @@ QString ThreadEntity::getStatus()
         return "на паузе";
 
     int speed = _pCalcsCount - _pLastCalcs;
+    _pLastCalcs = _pCalcsCount;
+
     QString text = "запущен с приоритетом: " + QString::number(_pPriority)
-            + ", нашел значение π " + QString::number(_pCalcsCount)
-            + "раз, скорость: " + QString::number(speed) + "значений/сек";
+            + "\n\tнашел π " + QString::number(_pCalcsCount)
+            + " раз, скорость: " + QString::number(speed) + " знач/сек";
+
+    return text;
 }
 
 void ThreadEntity::threadProc()

@@ -11,7 +11,6 @@
 #include "accumulatorpi.h"
 #include "threadentity.h"
 
-//using ThreadId = int;
 class ThreadEntity;
 
 class ThreadManager : public QObject
@@ -21,12 +20,12 @@ public:
     explicit ThreadManager(QObject *parent = nullptr);
     ~ThreadManager();
 
-    /*ThreadId*/ int createThread();
-    void increaseThreadPriority(/*ThreadId*/ int threadId);
-    void decreaseThreadPriority(/*ThreadId*/ int threadId);
-    void pauseThread(/*ThreadId*/ int threadId);
-    void resumeThread(/*ThreadId*/ int threadId);
-    void deleteThread(/*ThreadId*/ int threadId);
+    int createThread();
+    void increaseThreadPriority(int threadId);
+    void decreaseThreadPriority(int threadId);
+    void pauseThread(int threadId);
+    void resumeThread(int threadId);
+    void deleteThread(int threadId);
 
     QString updateStatus();
 
@@ -36,11 +35,11 @@ public slots:
 
 private:
     QVector<ThreadEntity*> _pThreadEntities;
-    /*ThreadId*/ int _pIdCount;
+    int _pIdCount;
     bool _pNoInfo;
     AccumulatorPi _pAccumulator;
 
-    QVector<ThreadEntity*>::iterator findThread(/*ThreadId*/ int threadId);
+    QVector<ThreadEntity*>::iterator findThread(int threadId);
 };
 
 #endif // THREADMANAGER_H

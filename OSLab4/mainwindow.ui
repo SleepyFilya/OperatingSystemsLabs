@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>422</width>
+    <width>932</width>
     <height>500</height>
    </rect>
   </property>
@@ -27,8 +27,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>422</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>1000</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -38,22 +38,22 @@
    <widget class="QLabel" name="controlValue">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>430</x>
       <y>10</y>
-      <width>401</width>
-      <height>181</height>
+      <width>491</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Consolas</family>
-      <pointsize>14</pointsize>
+      <pointsize>12</pointsize>
       <weight>50</weight>
       <bold>false</bold>
      </font>
     </property>
     <property name="text">
-     <string>π не вычисленоr
+     <string>π не вычислено
 Запущенных потоков нет</string>
     </property>
    </widget>
@@ -61,7 +61,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>200</y>
+      <y>10</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -96,7 +96,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>200</y>
+      <y>10</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -131,7 +131,7 @@
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>200</y>
+      <y>10</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -166,7 +166,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>200</y>
+      <y>10</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -201,9 +201,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>240</y>
+      <y>50</y>
       <width>401</width>
-      <height>241</height>
+      <height>441</height>
      </rect>
     </property>
    </widget>
@@ -211,7 +211,7 @@
     <property name="geometry">
      <rect>
       <x>220</x>
-      <y>200</y>
+      <y>10</y>
       <width>30</width>
       <height>30</height>
      </rect>
@@ -246,7 +246,7 @@
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>200</y>
+      <y>10</y>
       <width>30</width>
       <height>30</height>
      </rect>

@@ -8,14 +8,11 @@
 #include "threadmanager.h"
 #include "mathmethod.h"
 
-class ThreadEntity/* : public QThread*/
+class ThreadEntity
 {
-//    Q_OBJECT
 public:
-    ThreadEntity(/*ThreadId*/ int id, AccumulatorPi* pAccumulator);
+    ThreadEntity(int id, AccumulatorPi* pAccumulator);
     ~ThreadEntity();
-
-//    bool isRunning;
 
     void pause();
     void resume();
@@ -25,24 +22,25 @@ public:
 
     QString getStatus();
 
-    /*ThreadId*/ int getId() const { return _pId; }
+    int getId() const { return _pId; }
+    void threadProc();
 
 signals:
 
 public slots:
 
 private:
-    /*ThreadId*/ int _pId;
+    int _pId;
     MathMethod _pMathMetod;
     AccumulatorPi* _pAccumulator;
-    std::thread* _pThread;
+    /*std::thread**/ HANDLE _pThread;
     int _pPriority;
     std::atomic_bool _pNeedTerminate;
     std::atomic_int _pCalcsCount;
     int _pLastCalcs;
     bool _pPaused;
 
-    void threadProc();
+
 };
 
 //#endif // THREADENTITY_H

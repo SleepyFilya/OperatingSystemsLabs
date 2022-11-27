@@ -33,9 +33,9 @@ void MainWindow::printResult()
 void MainWindow::on_createThreadBtn_clicked()
 {
     qDebug() << "1";
-    /*ThreadId*/ int itemId = threadManager->createThread();
+    int itemId = threadManager->createThread();
     qDebug() << "2: itemId = " << itemId;
-    QString name = "Поток " + QString::number(itemId);
+    QString name = /*"Поток " + */QString::number(itemId);
     qDebug() << "3: name = " << name;
 
     ui->threadList->addItem(name);
@@ -45,10 +45,10 @@ void MainWindow::on_createThreadBtn_clicked()
 
 void MainWindow::on_deleteThreadBtn_clicked()
 {
-    qDebug() << "delet thread: " << ui->threadList->currentRow();
-    threadManager->deleteThread(ui->threadList->currentRow());
+    qDebug() << "delet thread: " << ui->threadList->currentItem()->text().toInt();
+    threadManager->deleteThread(ui->threadList->currentItem()->text().toInt());
 
-    qDebug() << "delet row: " << ui->threadList->currentRow();
+    qDebug() << "delet row: " << ui->threadList->currentItem()->text().toInt();
     delete ui->threadList->takeItem(ui->threadList->currentRow());
     threadCount--;
 
@@ -57,21 +57,21 @@ void MainWindow::on_deleteThreadBtn_clicked()
 
 void MainWindow::on_startProcessBtn_clicked()
 {
-    threadManager->resumeThread(ui->threadList->currentRow()+1);
+    threadManager->resumeThread(ui->threadList->currentItem()->text().toInt());
 }
 
 void MainWindow::on_pauseProcessBtn_clicked()
 {
-    threadManager->pauseThread(ui->threadList->currentRow()+1);
+    threadManager->pauseThread(ui->threadList->currentItem()->text().toInt());
 }
 
 void MainWindow::on_priorityUpBtn_clicked()
 {
-    threadManager->increaseThreadPriority(ui->threadList->currentRow()+1);
+    threadManager->increaseThreadPriority(ui->threadList->currentItem()->text().toInt());
 }
 
 void MainWindow::on_priorityDownBtn_clicked()
 {
-    threadManager->decreaseThreadPriority(ui->threadList->currentRow()+1);
+    threadManager->decreaseThreadPriority(ui->threadList->currentItem()->text().toInt());
 }
 
